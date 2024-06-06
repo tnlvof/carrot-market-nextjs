@@ -1,12 +1,13 @@
 "use client";
-import FromButton from "@/components/form-btn";
-import FormInput from "@/components/form-input";
+import FromButton from "@/components/button";
+import FormInput from "@/components/input";
 import SocialLogin from "@/components/social-login";
 import { useFormState } from "react-dom";
-import { handleForm } from "./actions";
+import { login } from "./actions";
+import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 
 export default function Login() {
-  const [state, action] = useFormState(handleForm, null);
+  const [state, action] = useFormState(login, null);
   return (
     <>
       <div className="flex flex-col gap-10 py-6">
@@ -20,12 +21,15 @@ export default function Login() {
             type={"email"}
             placeholder={"Email"}
             required={true}
+            errors={state?.fieldErrors.email}
           />
           <FormInput
             name="password"
             type={"password"}
             placeholder={"Password"}
             required={true}
+            minLength={PASSWORD_MIN_LENGTH}
+            errors={state?.fieldErrors.password}
           />
           <FromButton text={"Login"} />
         </form>
