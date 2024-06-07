@@ -3,7 +3,6 @@ import {
   PASSWORD_REGEX,
   PASSWORD_REGEX_ERROR,
 } from "@/lib/constants";
-("use server");
 import { z } from "zod";
 
 const formSchmea = z
